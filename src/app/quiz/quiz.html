@@ -1,0 +1,26 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white text-black! rounded-2xl shadow-sm">
+    <div class="flex flex-col gap-2">
+        @if(finished()) {
+        <div class="text-center">
+            <h2 class="text-2xl font-bold">
+                Quiz Finished! - Score: {{ score() }}/{{ questions.length }}
+            </h2>
+
+            <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="reset()">
+                Restart Quiz
+            </button>
+        </div>
+        } @else {
+        <h2 class="text-xl font-bold mb-4">
+            Question {{ currentIndex() + 1}}
+        </h2>
+
+        <p class="text-black! mb-4">{{ currentQuestion().question }}</p>
+        @for(option of currentQuestion().options; track option) {
+        <button class="border p-2 rounded hover:bg-gray-100" (click)="answer(option)">
+            {{ option }}
+        </button>
+        }
+        }
+    </div>
+</div>

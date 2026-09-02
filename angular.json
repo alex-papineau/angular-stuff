@@ -3,7 +3,8 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "4f8a6281-b822-4e31-9111-39aef0a42c08"
+    "analytics": "4f8a6281-b822-4e31-9111-39aef0a42c08",
+    "schematicCollections": ["@schematics/angular", "playwright-ng-schematics"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -25,9 +26,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
@@ -75,6 +74,17 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "Angular-Portfolio:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Angular-Portfolio:serve:production"
+            }
+          }
         }
       }
     }

@@ -1,11 +1,49 @@
-<div class="text-center text-4xl font-bold mt-10">
-    <h1 class="text-center text-4xl font-bold mt-10">Angular Stuff</h1>
+<div class="text-center text-4xl font-bold my-10">
+    <h1 class="text-center text-4xl font-bold">Angular Stuff</h1>
 </div>
-<div
-    class="grid grid-cols-1 lg:grid-cols-3 mx-10 gap-4 items-center justify-center">
-    <app-stopwatch></app-stopwatch>
-    <app-quiz></app-quiz>
-    <app-password-generator></app-password-generator>
-    <app-chat-ui></app-chat-ui>
-    <app-github-user-search-ui></app-github-user-search-ui>
+<div class="grid grid-cols-1 lg:grid-cols-3 mx-10 gap-4 items-stretch justify-center h-full">
+    <!-- Stopwatch -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-stopwatch class="flex-grow"></app-stopwatch>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Stopwatch works</summary>
+            <p class="mt-2 text-sm text-gray-300">Built using Angular's reactive <strong>Signals</strong> (<code>signal()</code>) to hold the time state. Event binding (<code>(click)</code>) in the template triggers methods that mutate the signal via <code>.update()</code> and <code>.set()</code>.</p>
+        </details>
+    </div>
+
+    <!-- Quiz -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-quiz class="flex-grow"></app-quiz>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Quiz works</summary>
+            <p class="mt-2 text-sm text-gray-300">Relies on Angular <strong>Signals</strong> to track the current question index, score, and finished state. The template leverages Angular's built-in control flow (<code>&#64;if</code> and <code>&#64;for</code>) to dynamically render questions and options.</p>
+        </details>
+    </div>
+
+    <!-- Password Generator -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-password-generator class="flex-grow"></app-password-generator>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Password Gen works</summary>
+            <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the generated password string. Event binding (<code>(click)</code>) fires the logic, mutating the signal which Angular automatically reflects in the DOM.</p>
+        </details>
+    </div>
+
+    <!-- Chat UI -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-chat-ui class=""></app-chat-ui>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Chat UI works</summary>
+            <p class="mt-2 text-sm text-gray-300">Manages a message list using a <strong>Signal</strong> array. The template uses the <code>&#64;for</code> control flow block to iterate, a template reference variable (<code>#input</code>) to grab user input, and event filtering (<code>(keyup.enter)</code>) for submission.</p>
+        </details>
+    </div>
+
+    <!-- GitHub User Search UI -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-github-user-search-ui class="flex-grow"></app-github-user-search-ui>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Search UI works</summary>
+            <p class="mt-2 text-sm text-gray-300">State is driven entirely by <strong>Signals</strong>. Uses <code>&#64;if</code> blocks to conditionally display loading/error messages. Utilizes property binding (<code>[src]</code>) for the avatar and updates the query signal using the <code>(input)</code> event.</p>
+        </details>
+    </div>
 </div>

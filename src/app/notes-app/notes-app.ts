@@ -12,8 +12,8 @@ export class NotesApp {
 
   constructor() {
     effect(() => {
-      if(typeof window !== 'undefined') {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.notes()));
+      if (typeof localStorage !== 'undefined' && localStorage.setItem) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.notes()));
       }
     })
   }
@@ -37,7 +37,7 @@ export class NotesApp {
   );
 
   private loadNotes(): string[] {
-    if(typeof window === 'undefined') return [];
+    if (typeof localStorage === 'undefined' || !localStorage.getItem) return [];
     const data = localStorage.getItem(this.STORAGE_KEY);
     return data ? JSON.parse(data) : [];
   }

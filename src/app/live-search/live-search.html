@@ -1,0 +1,77 @@
+<div class="card flex flex-col justify-between h-full">
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold">Live Search</h2>
+      <span class="text-xs bg-[#7b68ee]/20 text-[#7b68ee] px-2 py-0.5 rounded-full font-medium">
+        RxJS Streams
+      </span>
+    </div>
+
+    <div class="relative">
+      <input
+        type="text"
+        [formControl]="searchTerm"
+        placeholder="Type to search (e.g. Angular, CSS)..."
+        class="w-full bg-[#111111] border border-[#222222] focus:border-[#7b68ee] rounded-lg py-2 pl-3 pr-10 text-sm text-white placeholder:text-gray-500 focus:outline-none transition"
+      />
+      @if (searchTerm.value) {
+        <button
+          type="button"
+          (click)="clearSearch()"
+          class="absolute right-3 top-2.5 text-gray-400 hover:text-white text-xs cursor-pointer"
+        >
+          ✕
+        </button>
+      }
+    </div>
+
+    <div class="flex items-center justify-between mt-2 text-xs text-gray-400">
+      <span>Debounced 300ms + switchMap</span>
+      @if (loading()) {
+        <span class="text-[#7b68ee] animate-pulse flex items-center gap-1 font-medium">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#7b68ee] animate-ping"></span>
+          Searching...
+        </span>
+      }
+    </div>
+
+    @if (error()) {
+      <div class="mt-3 p-2 bg-red-950/40 border border-red-800 text-red-400 text-xs rounded-lg">
+        {{ error() }}
+      </div>
+    }
+
+    <div class="mt-3 space-y-2 max-h-56 overflow-y-auto pr-1">
+      @if (results$ | async; as results) {
+        @if (searchTerm.value.trim() && results.length === 0 && !loading()) {
+          <div class="text-center text-xs text-gray-400 py-6">
+            No results matching "{{ searchTerm.value }}"
+          </div>
+        } @else if (!searchTerm.value.trim()) {
+          <div class="text-center text-xs text-gray-500 py-6">
+            Start typing to stream search results...
+          </div>
+        } @else {
+          @for (item of results; track item.id) {
+            <div class="p-2.5 rounded-xl bg-[#111111] border border-[#222222] hover:border-[#7b68ee]/50 transition">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-white">{{ item.name }}</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-zinc-800 text-gray-300">
+                  {{ item.category }}
+                </span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">{{ item.description }}</p>
+              <div class="flex flex-wrap gap-1 mt-2">
+                @for (tag of item.tags; track tag) {
+                  <span class="text-[10px] text-gray-500 bg-black/40 px-1.5 py-0.5 rounded">
+                    #{{ tag }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+        }
+      }
+    </div>
+  </div>
+</div>

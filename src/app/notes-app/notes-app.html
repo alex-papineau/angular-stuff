@@ -1,24 +1,50 @@
-<div class="card">
-    <h2 class="text-center text-2xl font-bold mb-4">Notes App</h2>
-    <input type="text" (input)="search.set($any($event.target).value)" placeholder="Search notes..."
-        class="p-2 rounded-lg text-black border" />
-        <hr class="my-4 border-gray-600" />
-    <div class="flex flex-col gap-2">
-        <input type="text" #noteInput placeholder="Enter new note" class="p-2 rounded-lg text-black border" />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            (click)="addNote(noteInput.value); noteInput.value=''">Add Note</button>
-        @if(notes().length >= 10) {
-            <p class="text-red-500 font-bold">Maximum limit of 10 notes reached.</p>
-        }
-    </div>
+<div class="card flex flex-col justify-between">
+    <h2 class="text-xl font-bold text-center mb-4">Notes App</h2>
 
-    <div class="space-y-2 mt-4">
-        @for(item of filteredNotes(); track item.index) {
-            <div class="flex items-center justify-between bg-gray-700 text-white! p-2 rounded-lg">
-                <span>{{ item.note }}</span>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                    (click)="deleteNote(item.index)">Delete</button>
+    <div class="flex flex-col space-y-3 my-auto">
+        <input type="text" 
+            (input)="search.set($any($event.target).value)" 
+            placeholder="Search notes..."
+            class="w-full bg-[#111111] border border-[#222222] focus:border-[#7b68ee] rounded-lg py-2 px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none transition" />
+
+        <div class="flex items-center gap-2">
+            <input type="text" 
+                #noteInput 
+                placeholder="Enter new note..." 
+                class="flex-grow bg-[#111111] border border-[#222222] focus:border-[#7b68ee] rounded-lg py-2 px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none transition"
+                (keyup.enter)="addNote(noteInput.value); noteInput.value=''" />
+            <button class="bg-[#7b68ee] hover:opacity-90 text-white font-semibold py-2 px-4 rounded-lg text-sm transition cursor-pointer"
+                (click)="addNote(noteInput.value); noteInput.value=''">
+                Add
+            </button>
+        </div>
+
+        @if(notes().length >= 10) {
+            <div class="p-2 rounded-lg bg-[#111111] border border-[#222222] text-[#7b68ee] text-xs text-center font-medium">
+                Maximum limit of 10 notes reached.
             </div>
         }
+
+        <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            @if(filteredNotes().length === 0) {
+                <div class="text-center text-xs text-gray-400 py-6">
+                    @if (search()) {
+                        No notes matching "{{ search() }}"
+                    } @else {
+                        No notes yet.
+                    }
+                </div>
+            } @else {
+                @for(item of filteredNotes(); track item.index) {
+                <div class="flex items-center justify-between bg-[#111111] border border-[#222222] p-2.5 px-3 rounded-xl gap-2">
+                    <span class="text-sm text-white break-words flex-grow">{{ item.note }}</span>
+                    <button class="text-gray-400 hover:text-white px-2 py-1 rounded text-xs font-semibold transition cursor-pointer flex-shrink-0"
+                        (click)="deleteNote(item.index)">
+                        Delete
+                    </button>
+                </div>
+                }
+            }
+        </div>
     </div>
 </div>

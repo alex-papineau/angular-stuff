@@ -1,27 +1,31 @@
-<div class="card">
-    <h2 class="text-center text-2xl font-bold mb-4">Quiz</h2>
-    <div class="flex flex-col gap-2">
-        @if(finished()) {
-        <div class="text-center">
-            <h2 class="text-2xl font-bold">
-                Quiz Finished! - Score: {{ score() }}/{{ questions.length }}
-            </h2>
+<div class="card flex flex-col justify-between">
+    <h2 class="text-xl font-bold text-center mb-4">Quiz</h2>
 
-            <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="reset()">
+    <div class="flex flex-col my-auto">
+        @if(finished()) {
+        <div class="text-center py-4">
+            <h3 class="text-lg font-bold text-white mb-2">Quiz Finished</h3>
+            <div class="bg-[#111111] border border-[#222222] rounded-xl py-4 px-6 mb-4">
+                <span class="text-xs text-gray-400 block mb-1">Score</span>
+                <span class="text-3xl font-bold text-[#7b68ee]">{{ score() }} <span class="text-gray-400 text-lg font-normal">/ {{ questions.length }}</span></span>
+            </div>
+
+            <button class="w-full bg-[#7b68ee] hover:opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer text-sm" (click)="reset()">
                 Restart Quiz
             </button>
         </div>
         } @else {
-        <h2 class="text-xl font-bold mb-4">
-            Question {{ currentIndex() + 1}}
-        </h2>
+        <div class="bg-[#111111] border border-[#222222] p-4 rounded-xl mb-4">
+            <p class="text-sm font-medium text-white leading-snug">{{ currentQuestion().question }}</p>
+        </div>
 
-        <p class="text-black! mb-4">{{ currentQuestion().question }}</p>
-        @for(option of currentQuestion().options; track option) {
-        <button class="border p-2 rounded hover:bg-gray-100" (click)="answer(option)">
-            {{ option }}
-        </button>
-        }
+        <div class="space-y-2">
+            @for(option of currentQuestion().options; track option) {
+            <button class="w-full text-left p-3 rounded-xl bg-[#111111] border border-[#222222] hover:border-[#7b68ee] hover:bg-black text-white text-sm font-medium transition cursor-pointer" (click)="answer(option)">
+                {{ option }}
+            </button>
+            }
+        </div>
         }
     </div>
 </div>

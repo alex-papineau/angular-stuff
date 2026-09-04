@@ -20,6 +20,6 @@ export class VotingApp {
 
   getPercentage(votes: number) {
     const total = this.store.totalVotes();
-    return total ? (votes / total) * 100 : 0;
+    return total ? Math.round((votes / total) * 100) : 0;
   }
 }

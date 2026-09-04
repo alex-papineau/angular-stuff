@@ -1,19 +1,25 @@
-<div class="card">
-    <h2 class="text-center text-2xl font-bold mb-4">Traffic Signal</h2>
-    <div class="bg-black p-6 rounded-3xl w-40 space-y-4 mx-auto flex flex-col justify-center">
-        @for(light of lights; track light.color) {
-        <div class="h-20 w-20 rounded-full mx-auto transition-all duration-500 flex items-center justify-center text-xl font-bold"
-            [class.bg-red-500]="currentLight() === 'Red' && light.color === 'Red'"
-            [class.bg-yellow-500]="currentLight() === 'Yellow' && light.color === 'Yellow'"
-            [class.bg-green-500]="currentLight() === 'Green' && light.color === 'Green'"
-            [class.bg-gray-700]="currentLight() !== light.color"
-            [class.text-white]="light.color !== 'Yellow'"
-            [class.text-black]="light.color === 'Yellow'"
-            >
-            @if(currentLight() === light.color) {
-                {{ timer() }}
+<div class="card flex flex-col justify-between">
+    <h2 class="text-xl font-bold text-center mb-4">Traffic Signal</h2>
+
+    <div class="my-auto py-2">
+        <div class="bg-[#111111] p-4 rounded-3xl border border-[#222222] w-32 sm:w-36 mx-auto space-y-3 flex flex-col justify-center items-center">
+            @for(light of lights; track light.color) {
+            <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-full mx-auto transition-all duration-300 flex items-center justify-center text-xl sm:text-2xl font-bold font-mono select-none"
+                [class.bg-red-600]="currentLight() === 'Red' && light.color === 'Red'"
+                [class.bg-yellow-400]="currentLight() === 'Yellow' && light.color === 'Yellow'"
+                [class.bg-green-500]="currentLight() === 'Green' && light.color === 'Green'"
+                [class.bg-black]="currentLight() !== light.color"
+                [class.border]="true"
+                [class.border-[#222222]]="currentLight() !== light.color"
+                [class.text-white]="light.color !== 'Yellow'"
+                [class.text-black]="light.color === 'Yellow'"
+                [class.opacity-30]="currentLight() !== light.color"
+                >
+                @if(currentLight() === light.color) {
+                    {{ timer() }}
+                }
+            </div>
             }
         </div>
-        }
     </div>
 </div>

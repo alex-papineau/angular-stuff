@@ -1,95 +1,98 @@
-<div class="text-center text-4xl font-bold my-10">
-    <h1 class="text-center text-4xl font-bold">Angular Stuff</h1>
-    <p class="text-sm text-white! pt-6">A collection of basic components that each use various Angular specific functionality.</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 mx-10 gap-4 items-stretch justify-center h-full">
-    <!-- Stopwatch -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-stopwatch class="flex-grow"></app-stopwatch>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Stopwatch works</summary>
-            <p class="mt-2 text-sm text-gray-300">Built using Angular's reactive <strong>Signals</strong> (<code>signal()</code>) to hold the time state. Event binding (<code>(click)</code>) in the template triggers methods that mutate the signal via <code>.update()</code> and <code>.set()</code>.</p>
-        </details>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold">Angular Stuff</h1>
+        <p class="text-sm text-gray-400 mt-2">A collection of basic components that each use various Angular specific functionality.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch justify-center">
+        <!-- Stopwatch -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-stopwatch class="flex-grow"></app-stopwatch>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Stopwatch works</summary>
+                <p class="mt-2 text-sm text-gray-300">Built using Angular's reactive <strong>Signals</strong> (<code>signal()</code>) to hold the millisecond time state and a <strong>Computed</strong> signal for formatted output. Event binding (<code>(click)</code>) triggers methods that mutate the signal via <code>.set()</code>.</p>
+            </details>
+        </div>
+
+        <!-- Quiz -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-quiz class="flex-grow"></app-quiz>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Quiz works</summary>
+                <p class="mt-2 text-sm text-gray-300">Relies on Angular <strong>Signals</strong> to track the current question index, score, and finished state. The template leverages Angular's built-in control flow (<code>&#64;if</code> and <code>&#64;for</code>) to dynamically render questions and options.</p>
+            </details>
+        </div>
+
+        <!-- Password Generator -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-password-generator class="flex-grow"></app-password-generator>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Password Gen works</summary>
+                <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the generated password string. Event binding (<code>(click)</code>) fires the logic, mutating the signal which Angular automatically reflects in the DOM.</p>
+            </details>
+        </div>
+
+        <!-- Chat UI -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-chat-ui class="flex-grow"></app-chat-ui>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Chat UI works</summary>
+                <p class="mt-2 text-sm text-gray-300">Manages a message list using a <strong>Signal</strong> array. The template uses the <code>&#64;for</code> control flow block to iterate, a template reference variable (<code>#input</code>) to grab user input, and event filtering (<code>(keyup.enter)</code>) for submission.</p>
+            </details>
+        </div>
+
+        <!-- GitHub User Search UI -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-github-user-search-ui class="flex-grow"></app-github-user-search-ui>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Search UI works</summary>
+                <p class="mt-2 text-sm text-gray-300">State is driven entirely by <strong>Signals</strong>. Uses <code>&#64;if</code> blocks to conditionally display loading/error messages. Utilizes property binding (<code>[src]</code>) for the avatar and updates the query signal using the <code>(input)</code> event.</p>
+            </details>
+        </div>
+
+        <!-- Voting App -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-voting-app class="flex-grow"></app-voting-app>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Voting App works</summary>
+                <p class="mt-2 text-sm text-gray-300">State is managed centrally using an injectable <strong>Service</strong> (<code>PollStore</code>) leveraging Angular <strong>Signals</strong> and <code>computed()</code> for derived state. The component uses <code>inject()</code> to access the store and <code>ngModel</code> for two-way data binding on new options.</p>
+            </details>
+        </div>
+
+        <!-- Notes App -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-notes-app class="flex-grow"></app-notes-app>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Notes App works</summary>
+                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store notes and search state. A <code>computed()</code> signal dynamically filters the notes based on the search query. An <code>effect()</code> automatically persists notes to <code>localStorage</code> whenever the state changes.</p>
+            </details>
+        </div>
+
+        <!-- Mini Cart System -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-mini-cart-system class="flex-grow"></app-mini-cart-system>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Mini Cart System works</summary>
+                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store cart state and <code>computed()</code> signals to derive total items and cost. An <code>effect()</code> automatically synchronizes the cart data with <code>localStorage</code>.</p>
+            </details>
+        </div>
+
+        <!-- Traffic Signal -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-traffic-signal class="flex-grow"></app-traffic-signal>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Traffic Signal works</summary>
+                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to track the current active light and a countdown timer. A <code>setInterval</code> manages the state transitions automatically based on each light's predefined duration.</p>
+            </details>
+        </div>
+
+        <!-- Digital World Clock -->
+        <div class="flex flex-col gap-3 h-full col-span-3">
+            <app-digital-world-clock></app-digital-world-clock>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Digital World Clock works</summary>
+                <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the current date and time. A <code>setInterval</code> updates the signal every second, and the template uses standard JavaScript <code>Intl.DateTimeFormat</code> API functions to display the time according to the local and specific world time zones.</p>
+            </details>
+        </div>
     </div>
-
-    <!-- Quiz -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-quiz class="flex-grow"></app-quiz>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Quiz works</summary>
-            <p class="mt-2 text-sm text-gray-300">Relies on Angular <strong>Signals</strong> to track the current question index, score, and finished state. The template leverages Angular's built-in control flow (<code>&#64;if</code> and <code>&#64;for</code>) to dynamically render questions and options.</p>
-        </details>
-    </div>
-
-    <!-- Password Generator -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-password-generator class="flex-grow"></app-password-generator>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Password Gen works</summary>
-            <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the generated password string. Event binding (<code>(click)</code>) fires the logic, mutating the signal which Angular automatically reflects in the DOM.</p>
-        </details>
-    </div>
-
-    <!-- Chat UI -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-chat-ui class=""></app-chat-ui>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Chat UI works</summary>
-            <p class="mt-2 text-sm text-gray-300">Manages a message list using a <strong>Signal</strong> array. The template uses the <code>&#64;for</code> control flow block to iterate, a template reference variable (<code>#input</code>) to grab user input, and event filtering (<code>(keyup.enter)</code>) for submission.</p>
-        </details>
-    </div>
-
-    <!-- GitHub User Search UI -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-github-user-search-ui class="flex-grow"></app-github-user-search-ui>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Search UI works</summary>
-            <p class="mt-2 text-sm text-gray-300">State is driven entirely by <strong>Signals</strong>. Uses <code>&#64;if</code> blocks to conditionally display loading/error messages. Utilizes property binding (<code>[src]</code>) for the avatar and updates the query signal using the <code>(input)</code> event.</p>
-        </details>
-    </div>
-
-    <!-- Voting App -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-voting-app class="flex-grow"></app-voting-app>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Voting App works</summary>
-            <p class="mt-2 text-sm text-gray-300">State is managed centrally using an injectable <strong>Service</strong> (<code>PollStore</code>) leveraging Angular <strong>Signals</strong> and <code>computed()</code> for derived state. The component uses <code>inject()</code> to access the store and <code>ngModel</code> for two-way data binding on new options.</p>
-        </details>
-    </div>
-
-    <!-- Notes App -->
-    <div class="flex flex-col gap-2 h-full">
-        <app-notes-app class="flex-grow"></app-notes-app>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Notes App works</summary>
-            <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store notes and search state. A <code>computed()</code> signal dynamically filters the notes based on the search query. An <code>effect()</code> automatically persists notes to <code>localStorage</code> whenever the state changes.</p>
-        </details>
-    </div>
-
-    <!-- Mini Cart System -->
-     <div class="flex flex-col gap-2 h-full col-span-2">
-        <app-mini-cart-system></app-mini-cart-system>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Mini Cart System works</summary>
-            <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store cart state and <code>computed()</code> signals to derive total items and cost. An <code>effect()</code> automatically synchronizes the cart data with <code>localStorage</code>.</p>
-        </details>
-     </div>
-
-         <!-- Traffic Signal -->
-     <div class="flex flex-col gap-2 h-full">
-        <app-traffic-signal></app-traffic-signal>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Traffic Signal works</summary>
-            <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to track the current active light and a countdown timer. A <code>setInterval</code> manages the state transitions automatically based on each light's predefined duration.</p>
-        </details>
-     </div>
-
-         <!-- Digital World Clock -->
-     <div class="flex flex-col gap-2 h-full col-span-2">
-        <app-digital-world-clock></app-digital-world-clock>
-        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
-            <summary class="cursor-pointer font-bold select-none text-center">How the Digital World Clock works</summary>
-            <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the current date and time. A <code>setInterval</code> updates the signal every second, and the template uses standard JavaScript <code>Intl.DateTimeFormat</code> API functions to display the time according to the local and specific world time zones.</p>
-        </details>
-     </div>
 </div>

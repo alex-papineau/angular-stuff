@@ -1,97 +1,154 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold">Angular Stuff</h1>
-        <p class="text-sm text-gray-400 mt-2">A collection of basic components that each use various Angular specific functionality.</p>
+        <h1 class="text-4xl font-bold">Angular Stuff: Showcase Portfolio</h1>
+        <p class="text-sm text-gray-400 mt-2">A comprehensive collection of standalone components demonstrating core modern Angular capabilities: Signals, RxJS Observables, Reactive Forms, Dependency Injection, and Lifecycle Hooks.</p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch justify-center">
-        <!-- Stopwatch -->
+        <!-- 1. Stopwatch -->
         <div class="flex flex-col gap-3 h-full">
             <app-stopwatch class="flex-grow"></app-stopwatch>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Stopwatch works</summary>
-                <p class="mt-2 text-sm text-gray-300">Built using Angular's reactive <strong>Signals</strong> (<code>signal()</code>) to hold the millisecond time state and a <strong>Computed</strong> signal for formatted output. Event binding (<code>(click)</code>) triggers methods that mutate the signal via <code>.set()</code>.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Built using Angular's reactive <strong>Signals</strong> (<code>signal()</code>) to hold millisecond state and a <strong>Computed Signal</strong> (<code>computed()</code>) for formatted time output.
+                    Unlike regular functions that execute on every change detection cycle, <code>computed()</code> is <strong>lazily evaluated and memoized</strong>—it only recalculates when its underlying dependency signal changes. Event binding (<code>(click)</code>) triggers methods that mutate the signal via <code>.set()</code> and <code>.update()</code>.
+                </p>
             </details>
         </div>
 
-        <!-- Quiz -->
+        <!-- 2. Quiz -->
         <div class="flex flex-col gap-3 h-full">
             <app-quiz class="flex-grow"></app-quiz>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Quiz works</summary>
-                <p class="mt-2 text-sm text-gray-300">Relies on Angular <strong>Signals</strong> to track the current question index, score, and finished state. The template leverages Angular's built-in control flow (<code>&#64;if</code> and <code>&#64;for</code>) to dynamically render questions and options.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Tracks game state with multiple <strong>Signals</strong> (<code>currentIndex</code>, <code>score</code>, and <code>finished</code>).
+                    The template leverages Angular's built-in <strong>Control Flow</strong> (<code>&#64;if</code> and <code>&#64;for</code>) which replaces legacy structural directives (<code>*ngIf</code> / <code>*ngFor</code>) with a cleaner, faster compiler syntax that eliminates unnecessary wrapper elements and improves build-time type checking.
+                </p>
             </details>
         </div>
 
-        <!-- Password Generator -->
+        <!-- 3. Password Generator -->
         <div class="flex flex-col gap-3 h-full">
             <app-password-generator class="flex-grow"></app-password-generator>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Password Gen works</summary>
-                <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the generated password string. Event binding (<code>(click)</code>) fires the logic, mutating the signal which Angular automatically reflects in the DOM.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Demonstrates atomic state updates using a writable <strong>Signal</strong> (<code>password = signal('')</code>). Clicking the generate button triggers cryptographic randomness in TypeScript and updates the signal via <code>.set()</code>.
+                    Angular automatically notifies only the specific DOM text node bound to <code>password()</code>, enabling fine-grained template reactivity without re-evaluating the entire component tree.
+                </p>
             </details>
         </div>
 
-        <!-- Chat UI -->
+        <!-- 4. Chat UI -->
         <div class="flex flex-col gap-3 h-full">
             <app-chat-ui class="flex-grow"></app-chat-ui>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Chat UI works</summary>
-                <p class="mt-2 text-sm text-gray-300">Manages a message list using a <strong>Signal</strong> array. The template uses the <code>&#64;for</code> control flow block to iterate, a template reference variable (<code>#input</code>) to grab user input, and event filtering (<code>(keyup.enter)</code>) for submission.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Manages an array of chat messages using an immutable signal update pattern (<code>this.messages.update(list => [...list, msg])</code>).
+                    The template utilizes a <strong>Template Reference Variable</strong> (<code>#input</code>) for direct DOM element access without needing two-way binding, paired with Angular event filtering (<code>(keyup.enter)</code>) for keyboard submissions and <code>&#64;for</code> with tracking for optimal DOM recycling.
+                </p>
             </details>
         </div>
 
-        <!-- GitHub User Search UI -->
+        <!-- 5. GitHub User Search UI -->
         <div class="flex flex-col gap-3 h-full">
             <app-github-user-search-ui class="flex-grow"></app-github-user-search-ui>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Search UI works</summary>
-                <p class="mt-2 text-sm text-gray-300">State is driven entirely by <strong>Signals</strong>. Uses <code>&#64;if</code> blocks to conditionally display loading/error messages. Utilizes property binding (<code>[src]</code>) for the avatar and updates the query signal using the <code>(input)</code> event.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Demonstrates asynchronous state management where multiple signals track distinct states of an external request: <code>query</code>, <code>user</code>, <code>loading</code>, and <code>error</code>.
+                    The component uses property binding (<code>[src]</code>, <code>[disabled]</code>) and conditional <code>&#64;if</code> rendering to display loading spinners, error alerts, and retrieved user profiles with zero UI flicker.
+                </p>
             </details>
         </div>
 
-        <!-- Voting App -->
+        <!-- 6. Voting App -->
         <div class="flex flex-col gap-3 h-full">
             <app-voting-app class="flex-grow"></app-voting-app>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Voting App works</summary>
-                <p class="mt-2 text-sm text-gray-300">State is managed centrally using an injectable <strong>Service</strong> (<code>PollStore</code>) leveraging Angular <strong>Signals</strong> and <code>computed()</code> for derived state. The component uses <code>inject()</code> to access the store and <code>ngModel</code> for two-way data binding on new options.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Showcases enterprise architecture with an <strong>Injectable Singleton Service</strong> (<code>PollStore</code>) decorated with <code>&#64;Injectable(&#123; providedIn: 'root' &#125;)</code>.
+                    The component accesses this store via Angular's modern functional <code>inject(PollStore)</code> API instead of constructor injection. The store encapsulates poll options, vote increments, and a <code>computed()</code> signal deriving total votes across all options.
+                </p>
             </details>
         </div>
 
-        <!-- Notes App -->
+        <!-- 7. Notes App -->
         <div class="flex flex-col gap-3 h-full">
             <app-notes-app class="flex-grow"></app-notes-app>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Notes App works</summary>
-                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store notes and search state. A <code>computed()</code> signal dynamically filters the notes based on the search query. An <code>effect()</code> automatically persists notes to <code>localStorage</code> whenever the state changes.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Highlights Angular's <strong><code>effect()</code></strong> API. While <code>computed()</code> is intended strictly for pure, side-effect-free derivations, <code>effect()</code> is designed for operations that communicate with external APIs, like serializing note state to <code>localStorage</code>.
+                    The effect automatically tracks dependencies inside its injection context, synchronizing data to browser storage with environment safety checks for SSR/testing compatibility.
+                </p>
             </details>
         </div>
 
-        <!-- Mini Cart System -->
+        <!-- 8. Mini Cart System -->
         <div class="flex flex-col gap-3 h-full">
             <app-mini-cart-system class="flex-grow"></app-mini-cart-system>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Mini Cart System works</summary>
-                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store cart state and <code>computed()</code> signals to derive total items and cost. An <code>effect()</code> automatically synchronizes the cart data with <code>localStorage</code>.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Combines writeable cart state with derived aggregates using <code>computed()</code> to calculate both total item count and currency sum (via array <code>reduce</code>).
+                    An <code>effect()</code> automatically mirrors cart state into <code>localStorage</code>, while component methods enforce business rules such as item limits (maximum 10 items) and removal logic.
+                </p>
             </details>
         </div>
 
-        <!-- Traffic Signal -->
+        <!-- 9. Traffic Signal -->
         <div class="flex flex-col gap-3 h-full">
             <app-traffic-signal class="flex-grow"></app-traffic-signal>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Traffic Signal works</summary>
-                <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to track the current active light and a countdown timer. A <code>setInterval</code> manages the state transitions automatically based on each light's predefined duration.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Demonstrates state automation and <strong>Component Lifecycle Hooks</strong> (<code>ngOnInit</code> and <code>ngOnDestroy</code>).
+                    The active light and countdown timer are managed with signals. In <code>ngOnInit</code>, a periodic timer triggers light cycles; in <code>ngOnDestroy</code>, the timer interval is cleared using <code>clearInterval()</code>, preventing critical browser memory leaks when the component unmounts.
+                </p>
             </details>
         </div>
 
-        <!-- Digital World Clock -->
-        <div class="flex flex-col gap-3 h-full col-span-3">
-            <app-digital-world-clock></app-digital-world-clock>
+        <!-- 10. Live Search (RxJS Streams) -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-live-search class="flex-grow"></app-live-search>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Live Search works (RxJS)</summary>
+                <p class="mt-2 text-sm text-gray-300">
+                    Showcases asynchronous reactive programming using <strong>RxJS Observables and Operators</strong>.
+                    Keystrokes from a <code>FormControl</code> emit values through <code>debounceTime(300)</code> to throttle rapid typing, <code>distinctUntilChanged()</code> to ignore non-character keypresses, and <code>switchMap()</code> to cancel stale in-flight search requests when a new query arrives (eliminating race conditions).
+                    The template renders results declaratively using the <strong><code>async</code> pipe</strong>, which automatically manages subscriptions and unsubscribes when the component destroys.
+                </p>
+            </details>
+        </div>
+
+        <!-- 11. Registration Form (Reactive Forms) -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-registration-form class="flex-grow"></app-registration-form>
+            <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
+                <summary class="cursor-pointer font-bold select-none text-center">How the Registration Form works</summary>
+                <p class="mt-2 text-sm text-gray-300">
+                    Demonstrates enterprise <strong>Reactive Forms</strong> using <code>FormBuilder</code>, <code>FormGroup</code>, and <code>Validators</code>.
+                    Validation rules (required, minLength, email, requiredTrue) remain strictly encapsulated in TypeScript rather than the template.
+                    Validation messages render dynamically only when controls are <code>dirty</code> or <code>touched</code> to ensure a clean user experience.
+                    A custom cross-field group validator (<code>passwordMatchValidator</code>) validates that password and confirm password fields match in real-time before submission.
+                </p>
+            </details>
+        </div>
+
+        <!-- 12. Digital World Clock -->
+        <div class="flex flex-col gap-3 h-full">
+            <app-digital-world-clock class="flex-grow"></app-digital-world-clock>
             <details class="bg-black border border-[#222222] text-white p-4 rounded-xl mt-auto">
                 <summary class="cursor-pointer font-bold select-none text-center">How the Digital World Clock works</summary>
-                <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the current date and time. A <code>setInterval</code> updates the signal every second, and the template uses standard JavaScript <code>Intl.DateTimeFormat</code> API functions to display the time according to the local and specific world time zones.</p>
+                <p class="mt-2 text-sm text-gray-300">
+                    Pairs an Angular <strong>Signal</strong> (<code>currentTime = signal(new Date())</code>) with lifecycle-managed interval updates.
+                    The template utilizes standard JavaScript <code>Intl.DateTimeFormat</code> internationalization APIs to dynamically compute and display exact times across multiple world time zones (UTC, New York, London, Tokyo) with zero external third-party date library overhead.
+                </p>
             </details>
         </div>
     </div>

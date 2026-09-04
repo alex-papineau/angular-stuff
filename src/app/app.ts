@@ -10,10 +10,16 @@ import { NotesApp } from './notes-app/notes-app';
 import { MiniCartSystem } from './mini-cart-system/mini-cart-system';
 import { TrafficSignal } from './traffic-signal/traffic-signal';
 import { DigitalWorldClock } from './digital-world-clock/digital-world-clock';
+import { LiveSearch } from './live-search/live-search';
+import { RegistrationForm } from './registration-form/registration-form';
 
 @Component({
   selector: 'app-root',
-  imports: [Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI, VotingApp, NotesApp, MiniCartSystem, TrafficSignal, DigitalWorldClock],
+  imports: [
+    Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI,
+    VotingApp, NotesApp, MiniCartSystem, TrafficSignal, DigitalWorldClock,
+    LiveSearch, RegistrationForm
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

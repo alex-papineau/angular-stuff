@@ -46,4 +46,13 @@
             <p class="mt-2 text-sm text-gray-300">State is driven entirely by <strong>Signals</strong>. Uses <code>&#64;if</code> blocks to conditionally display loading/error messages. Utilizes property binding (<code>[src]</code>) for the avatar and updates the query signal using the <code>(input)</code> event.</p>
         </details>
     </div>
+
+    <!-- Voting App -->
+    <div class="flex flex-col gap-2 h-full">
+        <app-voting-app class="flex-grow"></app-voting-app>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Voting App works</summary>
+            <p class="mt-2 text-sm text-gray-300">State is managed centrally using an injectable <strong>Service</strong> (<code>PollStore</code>) leveraging Angular <strong>Signals</strong> and <code>computed()</code> for derived state. The component uses <code>inject()</code> to access the store and <code>ngModel</code> for two-way data binding on new options.</p>
+        </details>
+    </div>
 </div>

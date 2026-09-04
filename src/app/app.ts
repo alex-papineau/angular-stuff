@@ -5,10 +5,11 @@ import { Quiz } from './quiz/quiz';
 import { PasswordGenerator } from './password-generator/password-generator';
 import { ChatUI } from './chat-ui/chat-ui';
 import { GithubUserSearchUI } from './github-user-search-ui/github-user-search-ui';
+import { VotingApp } from './voting-app/voting-app';
 
 @Component({
   selector: 'app-root',
-  imports: [Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI],
+  imports: [Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI, VotingApp],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,0 +1,35 @@
+<div class="card">
+    <h2 class="text-center text-2xl font-bold mb-4">Mini Cart System</h2>
+    <div class="flex flex-col justify-center items-center">
+        <h3 class="text-xl">Cart: {{count()}}</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 p-2">
+        <div>
+            <h3 class="text-xl font-bold bg-blue-200 mb-4 p-2">Products</h3>
+            <div class="space-y-3 text-black!">
+                @for (p of products; track p) {
+                <div class="p-4 bg-white shadow rounded flex justify-between">
+                    <div>
+                        <p class="font-semibold">{{p.name}}</p>
+                        <p>{{p.price}}$</p>
+                    </div>
+                    <button class="bg-blue-500 text-white px-3 rounded" (click)="addToCart(p)">Add to Cart</button>
+                </div>
+                }
+            </div>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold bg-blue-200 mb-4 p-2">Cart</h3>
+            @for(c of cart(); track c; let i = $index) {
+                <div class="flex justify-between p-3 bg-gray-200 rounded mb-2 text-black!">
+                    <span>{{c.name}}</span>
+                    <button class="text-red-500" (click)="removeFromCart(i)">Remove</button>
+                </div>
+            }
+
+            <p class="mt-2 text-lg font-bold">
+                Total {{total()}}$
+            </p>
+        </div>
+    </div>
+</div>

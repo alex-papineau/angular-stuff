@@ -7,10 +7,11 @@ import { ChatUI } from './chat-ui/chat-ui';
 import { GithubUserSearchUI } from './github-user-search-ui/github-user-search-ui';
 import { VotingApp } from './voting-app/voting-app';
 import { NotesApp } from './notes-app/notes-app';
+import { MiniCartSystem } from './mini-cart-system/mini-cart-system'
 
 @Component({
   selector: 'app-root',
-  imports: [Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI, VotingApp, NotesApp],
+  imports: [Stopwatch, Quiz, PasswordGenerator, ChatUI, GithubUserSearchUI, VotingApp, NotesApp, MiniCartSystem],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

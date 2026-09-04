@@ -1,6 +1,6 @@
 <div class="text-center text-4xl font-bold my-10">
     <h1 class="text-center text-4xl font-bold">Angular Stuff</h1>
-    <p class="text-sm pt-6">A collection of basic components that each use various Angular specific functionality.</p>
+    <p class="text-sm text-white! pt-6">A collection of basic components that each use various Angular specific functionality.</p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-3 mx-10 gap-4 items-stretch justify-center h-full">
     <!-- Stopwatch -->
@@ -65,4 +65,13 @@
             <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store notes and search state. A <code>computed()</code> signal dynamically filters the notes based on the search query. An <code>effect()</code> automatically persists notes to <code>localStorage</code> whenever the state changes.</p>
         </details>
     </div>
+
+    <!-- Mini Cart System -->
+     <div class="flex flex-col gap-2 h-full col-span-2">
+        <app-mini-cart-system></app-mini-cart-system>
+        <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
+            <summary class="cursor-pointer font-bold select-none text-center">How the Mini Cart System works</summary>
+            <p class="mt-2 text-sm text-gray-300">Uses Angular <strong>Signals</strong> to store cart state and <code>computed()</code> signals to derive total items and cost. An <code>effect()</code> automatically synchronizes the cart data with <code>localStorage</code>.</p>
+        </details>
+     </div>
 </div>

@@ -1,0 +1,19 @@
+<div class="card">
+    <h2 class="text-center text-2xl font-bold mb-4">Traffic Signal</h2>
+    <div class="bg-black p-6 rounded-3xl w-40 space-y-4 mx-auto flex flex-col justify-center">
+        @for(light of lights; track light.color) {
+        <div class="h-20 w-20 rounded-full mx-auto transition-all duration-500 flex items-center justify-center text-xl font-bold"
+            [class.bg-red-500]="currentLight() === 'Red' && light.color === 'Red'"
+            [class.bg-yellow-500]="currentLight() === 'Yellow' && light.color === 'Yellow'"
+            [class.bg-green-500]="currentLight() === 'Green' && light.color === 'Green'"
+            [class.bg-gray-700]="currentLight() !== light.color"
+            [class.text-white]="light.color !== 'Yellow'"
+            [class.text-black]="light.color === 'Yellow'"
+            >
+            @if(currentLight() === light.color) {
+                {{ timer() }}
+            }
+        </div>
+        }
+    </div>
+</div>

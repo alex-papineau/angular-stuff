@@ -7,6 +7,9 @@
         <input type="text" #noteInput placeholder="Enter new note" class="p-2 rounded-lg text-black border" />
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             (click)="addNote(noteInput.value); noteInput.value=''">Add Note</button>
+        @if(notes().length >= 10) {
+            <p class="text-red-500 font-bold">Maximum limit of 10 notes reached.</p>
+        }
     </div>
 
     <div class="space-y-2 mt-4">

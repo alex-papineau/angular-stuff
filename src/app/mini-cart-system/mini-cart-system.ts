@@ -37,6 +37,7 @@ export class MiniCartSystem {
   cart = signal<any[]>(this.loadCart());
 
   addToCart(product: any) {
+    if (this.cart().length >= 10) return;
     this.cart.update(c => [...c, product]);
   }
 

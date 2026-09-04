@@ -89,6 +89,7 @@
         <app-digital-world-clock></app-digital-world-clock>
         <details class="bg-gray-800 text-white p-4 rounded-lg shadow-md mt-auto">
             <summary class="cursor-pointer font-bold select-none text-center">How the Digital World Clock works</summary>
+            <p class="mt-2 text-sm text-gray-300">Uses an Angular <strong>Signal</strong> to store the current date and time. A <code>setInterval</code> updates the signal every second, and the template uses standard JavaScript <code>Intl.DateTimeFormat</code> API functions to display the time according to the local and specific world time zones.</p>
         </details>
      </div>
 </div>

@@ -13,7 +13,7 @@ export class VotingApp {
   store = inject(PollStore);
 
   addOption() {
-    if (!this.newOption.trim()) return;
+    if (!this.newOption.trim() || this.store.options().length >= 10) return;
     this.store.addOption(this.newOption.trim());
     this.newOption = '';
   }

@@ -20,6 +20,9 @@
         </div>
         <div>
             <h3 class="text-xl font-bold bg-blue-200 mb-4 p-2">Cart</h3>
+            @if(cart().length >= 10) {
+                <p class="text-red-500 font-bold mb-2">Maximum limit of 10 items reached.</p>
+            }
             @for(c of cart(); track c; let i = $index) {
                 <div class="flex justify-between p-3 bg-gray-200 rounded mb-2 text-black!">
                     <span>{{c.name}}</span>

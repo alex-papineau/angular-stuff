@@ -22,7 +22,7 @@ export class NotesApp {
   search = signal('');
 
   addNote(note: string) {
-    if (!note.trim()) return;
+    if (!note.trim() || this.notes().length >= 10) return;
     this.notes.update(list => [...list, note]);
   }
 

@@ -4,6 +4,9 @@
         <input [(ngModel)]="newOption" type="text" placeholder="Enter new option" class="p-2 rounded-lg text-black border" />
         <button (click)="addOption()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add
             Option</button>
+        @if(store.options().length >= 10) {
+            <p class="text-red-500 font-bold text-sm">Maximum limit of 10 options reached.</p>
+        }
 
         @for(option of store.options(); track option.id) {
         <div class="bg-gray-100 p-3 rounded mb-2">

@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "angular-portfolio",
+  "compatibility_date": "2026-09-06",
+  "assets": {
+    "directory": "./dist/Angular-Portfolio/browser",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "angular.alexpapineau.com",
+      "custom_domain": true
+    }
+  ]
+}
